@@ -1,0 +1,21 @@
+[
+  {"kategorie": "TECHNOLOGIE", "pravidlo": "IBM webMethods",        "vaha": 5},
+  {"kategorie": "TECHNOLOGIE", "pravidlo": "webMethods",            "vaha": 5},
+  {"kategorie": "TECHNOLOGIE", "pravidlo": "MuleSoft",              "vaha": 4},
+  {"kategorie": "TECHNOLOGIE", "pravidlo": "boomi",                 "vaha": 4},
+  {"kategorie": "TECHNOLOGIE", "pravidlo": "Apache Camel",          "vaha": 4},
+  {"kategorie": "TECHNOLOGIE", "pravidlo": "ESB",                   "vaha": 4},
+  {"kategorie": "TECHNOLOGIE", "pravidlo": "REST API",              "vaha": 3},
+  {"kategorie": "TECHNOLOGIE", "pravidlo": "API",                   "vaha": 2},
+  {"kategorie": "TECHNOLOGIE", "pravidlo": "full-stack",            "vaha": -5},
+  {"kategorie": "POZICE",      "pravidlo": "solution architect",    "vaha": 5},
+  {"kategorie": "POZICE",      "pravidlo": "integration architect", "vaha": 5},
+  {"kategorie": "POZICE",      "pravidlo": "IT analytik",           "vaha": 4},
+  {"kategorie": "POZICE",      "pravidlo": "integration specialist","vaha": 5},
+  {"kategorie": "POZICE",      "pravidlo": "systems architect",     "vaha": 4},
+  {"kategorie": "LOKALITA",    "pravidlo": "remote",                "vaha": 3},
+  {"kategorie": "LOKALITA",    "pravidlo": "Olomouc",               "vaha": 4},
+  {"kategorie": "LOKALITA",    "pravidlo": "Brno",                  "vaha": 3},
+  {"kategorie": "LOKALITA",    "pravidlo": "Praha",                 "vaha": 2}
+
+]

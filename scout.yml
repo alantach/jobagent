@@ -22,6 +22,6 @@ jobs:
         run: |
           git config user.name  "Job Scout Bot"
           git config user.email "scout@github-actions"
-          git add data/vysledky.json
+          git add data/vysledky.json data/backup/ 2>/dev/null || true
           git diff --cached --quiet || git commit -m "Scout $(date +'%Y-%m-%d') - nove nabidky"
           git push

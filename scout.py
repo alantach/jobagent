@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
 Job Scout - prescreening
-Vysledky ulozi do data/vysledky.json
+Konfigurace: data/urls.json, data/pravidla.json
+Vysledky:    data/vysledky.json
+Backup HTML: data/backup/
 """
 import urllib.request
 import json
@@ -14,6 +16,7 @@ DATA_DIR   = os.path.join(BASE_DIR, "data")
 URLS_FILE  = os.path.join(DATA_DIR, "urls.json")
 RULES_FILE = os.path.join(DATA_DIR, "pravidla.json")
 OUT_FILE   = os.path.join(DATA_DIR, "vysledky.json")
+BACKUP_DIR = os.path.join(DATA_DIR, "backup")
 MIN_SKORE  = 5
 
 HEADERS = {
@@ -35,6 +38,7 @@ def extrahuj_odkazy(html, base_url, vzor):
     links = []
     origin = re.match(r'^(https?://[^/]+)', base_url)
     origin = origin.group(1) if origin else ""
+    url_re = re.compile(vzor, re.I) if vzor else None
     for m in re.finditer(r'href=["\']([^"\'#?][^"\']*)["\']', html):
         href = m.group(1)
         if href.startswith("http"):
@@ -43,13 +47,18 @@ def extrahuj_odkazy(html, base_url, vzor):
             full = origin + href
         else:
             continue
-        if vzor and vzor.lower() not in full.lower():
-            continue
-        if full not in links:
-            links.append(full)
+        if url_re:
+            match = url_re.search(full)
+            if not match:
+                continue
+            id_inzeratu = match.group(1) if match.lastindex else ""
+        else:
+            id_inzeratu = ""
+        if not any(l["url"] == full for l in links):
+            links.append({"url": full, "id": id_inzeratu})
     return links
 
-def parsuj(html, odkaz):
+def parsuj(html):
     text = re.sub(r'<script[\s\S]*?</script>', ' ', html, flags=re.I)
     text = re.sub(r'<style[\s\S]*?</style>', ' ', text, flags=re.I)
     text = re.sub(r'<[^>]+>', ' ', text)
@@ -81,8 +90,7 @@ def parsuj(html, odkaz):
         "nazev_pozice": nazev[:150],
         "firma":        firma[:100],
         "lokalita":     lokalita[:100],
-        "popis":        text[:2000],
-        "odkaz":        odkaz,
+        "popis":        text[:3000],
     }
 
 def prescoring(inzerat, rules):
@@ -95,24 +103,43 @@ def prescoring(inzerat, rules):
     skore, matched = 0, []
     for r in rules:
         if r["pravidlo"].lower() in haystack:
-            skore += r.get("vaha", 0)
+            skore += r["vaha"]
             matched.append(f"{r['pravidlo']}({'+' if r['vaha']>0 else ''}{r['vaha']})")
     return max(1, min(10, skore)), ", ".join(matched)
 
+def uloz_html(html, inzerat, odkaz):
+    os.makedirs(BACKUP_DIR, exist_ok=True)
+    ts   = datetime.now().strftime("%Y%m%d_%H%M%S")
+    safe = re.sub(r'[^a-zA-Z0-9]', '_', inzerat["nazev_pozice"][:40])
+    path = os.path.join(BACKUP_DIR, f"skore{inzerat['prescoring']}_{safe}_{ts}.html")
+    liska = (
+        f'<div style="position:fixed;top:0;left:0;right:0;background:#0f3460;'
+        f'color:#00D4AA;padding:8px 16px;font-family:sans-serif;font-size:13px;z-index:9999">'
+        f'<b>{inzerat["nazev_pozice"]}</b> &nbsp;|&nbsp; '
+        f'Skore: <b>{inzerat["prescoring"]}/10</b> &nbsp;|&nbsp; '
+        f'{inzerat["match_pravidla"]} &nbsp;|&nbsp; '
+        f'<a href="{odkaz}" style="color:#fff" target="_blank">Otevrit original</a>'
+        f'</div><div style="margin-top:44px">'
+    )
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(liska + html + "</div>")
+    return os.path.basename(path)
+
 def main():
+    os.makedirs(DATA_DIR, exist_ok=True)
+
     with open(URLS_FILE,  "r", encoding="utf-8") as f: urls  = json.load(f)
     with open(RULES_FILE, "r", encoding="utf-8") as f: rules = json.load(f)
 
+    vysledky = []
     if os.path.exists(OUT_FILE):
         with open(OUT_FILE, "r", encoding="utf-8") as f:
             vysledky = json.load(f)
-    else:
-        vysledky = []
-
     existujici = {v["odkaz"] for v in vysledky}
-    aktivni    = [u for u in urls if u.get("aktivni")]
-    nove       = 0
-    preskoceno = 0
+
+    aktivni = [z for z in urls if z.get("aktivni")]
+    nove, preskoceno = 0, 0
+    good_urls, bad_urls = [], []
 
     print(f"\n=== Job Scout {datetime.now().strftime('%Y-%m-%d %H:%M')} ===")
     print(f"Zdroju: {len(aktivni)}, pravidel: {len(rules)}, existujicich: {len(vysledky)}\n")
@@ -122,24 +149,37 @@ def main():
         html_vypis = fetch(zdroj["url"])
         if not html_vypis:
             print("  PRESKOCENO\n")
+            bad_urls.append({"nazev": zdroj["nazev"], "url": zdroj["url"], "duvod": "chyba stazeni"})
             continue
 
         odkazy = extrahuj_odkazy(html_vypis, zdroj["url"], zdroj.get("url_vzor", ""))
-        print(f"  Odkazu: {len(odkazy)}")
+        print(f"  Nalezeno odkazu: {len(odkazy)}")
+        if odkazy:
+            good_urls.append({"nazev": zdroj["nazev"], "url": zdroj["url"], "odkazu": len(odkazy)})
+        else:
+            bad_urls.append({"nazev": zdroj["nazev"], "url": zdroj["url"], "duvod": "zadne odkazy nenalezeny"})
 
-        for odkaz in odkazy:
+        for link in odkazy:
+            odkaz      = link["url"]
+            id_inzeratu = link["id"]
+
             if odkaz in existujici:
                 continue
+
             html_detail = fetch(odkaz)
             if not html_detail:
                 continue
 
-            inzerat = parsuj(html_detail, odkaz)
+            inzerat = parsuj(html_detail)
             skore, matched = prescoring(inzerat, rules)
+            inzerat["prescoring"]     = skore
+            inzerat["match_pravidla"] = matched
 
             if skore < MIN_SKORE:
                 preskoceno += 1
                 continue
+
+            html_soubor = uloz_html(html_detail, inzerat, odkaz)
 
             vysledky.append({
                 "datum":          datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -148,12 +188,18 @@ def main():
                 "firma":          inzerat["firma"],
                 "lokalita":       inzerat["lokalita"],
                 "odkaz":          odkaz,
+                "id_inzeratu":    id_inzeratu,
                 "prescoring":     skore,
                 "match_pravidla": matched,
+                "popis":          inzerat["popis"],
+                "html_soubor":    html_soubor,
             })
             existujici.add(odkaz)
             nove += 1
+
             print(f"  + [{skore}/10] {inzerat['nazev_pozice'][:60]} @ {inzerat['firma'][:30]}")
+            if matched:
+                print(f"         {matched}")
 
         print()
 
@@ -162,6 +208,15 @@ def main():
     with open(OUT_FILE, "w", encoding="utf-8") as f:
         json.dump(vysledky, f, ensure_ascii=False, indent=2)
 
+    # Zapis souhrn URL
+    os.makedirs(BACKUP_DIR, exist_ok=True)
+    with open(os.path.join(BACKUP_DIR, "_goodurl.json"), "w", encoding="utf-8") as f:
+        json.dump(good_urls, f, ensure_ascii=False, indent=2)
+    with open(os.path.join(BACKUP_DIR, "_badurl.json"), "w", encoding="utf-8") as f:
+        json.dump(bad_urls, f, ensure_ascii=False, indent=2)
+
+    print(f"Funkci zdroju:    {len(good_urls)} (viz backup/_goodurl.json)")
+    print(f"Nefunkcni zdroju: {len(bad_urls)} (viz backup/_badurl.json)")
     print(f"=== Hotovo: {nove} novych, {preskoceno} pod skore {MIN_SKORE}, celkem: {len(vysledky)} ===\n")
 
 if __name__ == "__main__":
