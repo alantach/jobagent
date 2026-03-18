@@ -1,54 +1,54 @@
 [
   {
-    "aktivni": true,
+    "aktivni": false,
     "nazev": "Jobs.cz - IT analytik",
     "url": "https://www.jobs.cz/prace/it-analytik/?arrangement=work-mostly-from-home",
     "url_vzor": "/rpd/([a-z0-9-]+)"
   },
   {
-    "aktivni": true,
+    "aktivni": false,
     "nazev": "Jobs.cz - solution architect",
     "url": "https://www.jobs.cz/prace/?q%5B%5D=solution+architect",
     "url_vzor": "/rpd/([a-z0-9-]+)"
   },
   {
-    "aktivni": true,
+    "aktivni": false,
     "nazev": "Remotive",
     "url": "https://remotive.com/remote-jobs/software-dev",
     "url_vzor": "remotive\\.com/remote-jobs/[^/]+/[^/]+-([0-9]+)"
   },
   {
-    "aktivni": true,
+    "aktivni": false,
     "nazev": "We Work Remotely",
     "url": "https://weworkremotely.com/categories/remote-programming-jobs",
     "url_vzor": "weworkremotely\\.com/remote-jobs/([a-z0-9-]+-\\d+)"
   },
   {
-    "aktivni": true,
+    "aktivni": false,
     "nazev": "We Work Remotely",
     "url": "https://weworkremotely.com/categories/all-other-remote-jobs",
     "url_vzor": "weworkremotely\\.com/remote-jobs/([a-z0-9-]+-\\d+)"
   },
   {
-    "aktivni": true,
+    "aktivni": false,
     "nazev": "HitPrace.cz - IT Brno",
     "url": "https://www.hitprace.cz/prace/?lokalita_textbox=Olomouc&form_geolocation_okruh=40",
     "url_vzor": "/prace/([^/?]+)"
   },
   {
-    "aktivni": true,
+    "aktivni": false,
     "nazev": "Vision - kariera",
     "url": "https://www.vision.cz/o-nas/kariera",
     "url_vzor": "/kariera/([^/?]+)"
   },
   {
-    "aktivni": true,
+    "aktivni": false,
     "nazev": "Vera - kariera",
     "url": "https://www.vera.cz/kariera",
     "url_vzor": "/kariera/([^/?]+)"
   },
   {
-    "aktivni": true,
+    "aktivni": false,
     "nazev": "onsemi - careers",
     "url": "https://www.onsemi.com/careers",
     "url_vzor": "/careers/([^/?]+)"
@@ -89,7 +89,7 @@
     "aktivni": true,
     "nazev": "Práce.cz - IT",
     "url": "https://beta.prace.cz/hledat/?workAreaIds%5B%5D=200900011%3B200900012%3B200900013&jobTypes%5B%5D=FULL_TIME&jobTypes%5B%5D=PART_TIME&education%5B%5D=HIGHER_EDUCATION&salaryMin=50000&salaryCurrency=CZKce/",
-    "url_vzor": "/nabidka/volna-mista-v-it/([a-z0-9-]+)/"
+    "url_vzor": "/nabidka/([a-z0-9-]+)/"
   },
   {
     "aktivni": true,
