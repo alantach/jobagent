@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Job Scout - prescreening
+Job Scout - stahuje inzeraty, uklada do vysledky.json
 Konfigurace: data/urls.json, data/pravidla.json
-Vysledky:    data/vysledky.json
+Stazene IDs: data/stazene.json  (vsechny navstivene inzeraty)
+Vysledky:    data/vysledky.json (jen ty co prosly prescreeningem)
 Backup HTML: data/backup/
 """
 import urllib.request
@@ -10,14 +11,16 @@ import json
 import os
 import re
 from datetime import datetime
+import prescoring as ps
 
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR   = os.path.join(BASE_DIR, "data")
 URLS_FILE  = os.path.join(DATA_DIR, "urls.json")
 RULES_FILE = os.path.join(DATA_DIR, "pravidla.json")
 OUT_FILE   = os.path.join(DATA_DIR, "vysledky.json")
+STAZENE    = os.path.join(DATA_DIR, "stazene.json")
 BACKUP_DIR = os.path.join(DATA_DIR, "backup")
-MIN_SKORE  = 5
+MIN_SKORE  = 2
 
 HEADERS = {
     "User-Agent":      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
@@ -51,9 +54,9 @@ def extrahuj_odkazy(html, base_url, vzor):
             match = url_re.search(full)
             if not match:
                 continue
-            id_inzeratu = match.group(1) if match.lastindex else ""
+            id_inzeratu = match.group(1) if match.lastindex else full
         else:
-            id_inzeratu = ""
+            id_inzeratu = full
         if not any(l["url"] == full for l in links):
             links.append({"url": full, "id": id_inzeratu})
     return links
@@ -93,20 +96,6 @@ def parsuj(html):
         "popis":        text[:3000],
     }
 
-def prescoring(inzerat, rules):
-    haystack = " ".join([
-        inzerat["nazev_pozice"],
-        inzerat["firma"],
-        inzerat["lokalita"],
-        inzerat["popis"],
-    ]).lower()
-    skore, matched = 0, []
-    for r in rules:
-        if r["pravidlo"].lower() in haystack:
-            skore += r["vaha"]
-            matched.append(f"{r['pravidlo']}({'+' if r['vaha']>0 else ''}{r['vaha']})")
-    return max(1, min(10, skore)), ", ".join(matched)
-
 def uloz_html(html, inzerat, odkaz):
     os.makedirs(BACKUP_DIR, exist_ok=True)
     ts   = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -131,18 +120,26 @@ def main():
     with open(URLS_FILE,  "r", encoding="utf-8") as f: urls  = json.load(f)
     with open(RULES_FILE, "r", encoding="utf-8") as f: rules = json.load(f)
 
+    # Nacti vysledky
     vysledky = []
     if os.path.exists(OUT_FILE):
         with open(OUT_FILE, "r", encoding="utf-8") as f:
             vysledky = json.load(f)
-    existujici = {v["odkaz"] for v in vysledky}
+
+    # Nacti vsechna stazena ID (dedup brana)
+    stazene = {}
+    if os.path.exists(STAZENE):
+        with open(STAZENE, "r", encoding="utf-8") as f:
+            stazene = json.load(f)
+    # stazene = { id_inzeratu: { "url", "zdroj", "datum" } }
 
     aktivni = [z for z in urls if z.get("aktivni")]
-    nove, preskoceno = 0, 0
+    nove, preskoceno, preskoceno_dedup = 0, 0, 0
     good_urls, bad_urls = [], []
 
     print(f"\n=== Job Scout {datetime.now().strftime('%Y-%m-%d %H:%M')} ===")
-    print(f"Zdroju: {len(aktivni)}, pravidel: {len(rules)}, existujicich: {len(vysledky)}\n")
+    print(f"Zdroju: {len(aktivni)}, pravidel: {len(rules)}")
+    print(f"Stazeno celkem: {len(stazene)}, ve vysledcich: {len(vysledky)}\n")
 
     for zdroj in aktivni:
         print(f"[{zdroj['nazev']}]")
@@ -154,26 +151,42 @@ def main():
 
         odkazy = extrahuj_odkazy(html_vypis, zdroj["url"], zdroj.get("url_vzor", ""))
         print(f"  Nalezeno odkazu: {len(odkazy)}")
+
         if odkazy:
             good_urls.append({"nazev": zdroj["nazev"], "url": zdroj["url"], "odkazu": len(odkazy)})
         else:
-            bad_urls.append({"nazev": zdroj["nazev"], "url": zdroj["url"], "duvod": "zadne odkazy nenalezeny"})
+            bad_urls.append({"nazev": zdroj["nazev"], "url": zdroj["url"], "duvod": "zadne odkazy"})
 
         for link in odkazy:
             odkaz      = link["url"]
             id_inzeratu = link["id"]
 
-            if odkaz in existujici:
+            # Dedup podle ID
+            if id_inzeratu in stazene:
+                preskoceno_dedup += 1
                 continue
 
             html_detail = fetch(odkaz)
             if not html_detail:
+                # Oznac jako stazene aby se nepokousel znovu
+                stazene[id_inzeratu] = {
+                    "url": odkaz, "zdroj": zdroj["nazev"],
+                    "datum": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "vysledek": "chyba stazeni"
+                }
                 continue
 
             inzerat = parsuj(html_detail)
-            skore, matched = prescoring(inzerat, rules)
+            skore, matched = ps.vypocitej(inzerat, rules)
             inzerat["prescoring"]     = skore
             inzerat["match_pravidla"] = matched
+
+            # Uloz ID jako stazene bez ohledu na skore
+            stazene[id_inzeratu] = {
+                "url": odkaz, "zdroj": zdroj["nazev"],
+                "datum": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                "vysledek": f"skore {skore}"
+            }
 
             if skore < MIN_SKORE:
                 preskoceno += 1
@@ -194,7 +207,6 @@ def main():
                 "popis":          inzerat["popis"],
                 "html_soubor":    html_soubor,
             })
-            existujici.add(odkaz)
             nove += 1
 
             print(f"  + [{skore}/10] {inzerat['nazev_pozice'][:60]} @ {inzerat['firma'][:30]}")
@@ -203,21 +215,27 @@ def main():
 
         print()
 
+    # Uloz vse
     vysledky.sort(key=lambda x: x["prescoring"], reverse=True)
-
     with open(OUT_FILE, "w", encoding="utf-8") as f:
         json.dump(vysledky, f, ensure_ascii=False, indent=2)
 
-    # Zapis souhrn URL
+    with open(STAZENE, "w", encoding="utf-8") as f:
+        json.dump(stazene, f, ensure_ascii=False, indent=2)
+
     os.makedirs(BACKUP_DIR, exist_ok=True)
     with open(os.path.join(BACKUP_DIR, "_goodurl.json"), "w", encoding="utf-8") as f:
         json.dump(good_urls, f, ensure_ascii=False, indent=2)
     with open(os.path.join(BACKUP_DIR, "_badurl.json"), "w", encoding="utf-8") as f:
         json.dump(bad_urls, f, ensure_ascii=False, indent=2)
 
-    print(f"Funkci zdroju:    {len(good_urls)} (viz backup/_goodurl.json)")
-    print(f"Nefunkcni zdroju: {len(bad_urls)} (viz backup/_badurl.json)")
-    print(f"=== Hotovo: {nove} novych, {preskoceno} pod skore {MIN_SKORE}, celkem: {len(vysledky)} ===\n")
+    print(f"Funkci zdroju:    {len(good_urls)}")
+    print(f"Nefunkcni zdroju: {len(bad_urls)}")
+    print(f"Preskoceno dedup: {preskoceno_dedup}")
+    print(f"Preskoceno skore: {preskoceno}")
+    print(f"Novych ulozenych: {nove}")
+    print(f"Celkem stazeno:   {len(stazene)}")
+    print(f"=== Hotovo: celkem {len(vysledky)} ve vysledcich ===\n")
 
 if __name__ == "__main__":
     main()
