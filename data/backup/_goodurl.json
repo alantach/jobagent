@@ -1,42 +1,62 @@
 [
   {
+    "aktivni": true,
     "nazev": "Jobs.cz - IT analytik",
     "url": "https://www.jobs.cz/prace/it-analytik/?arrangement=work-mostly-from-home",
-    "odkazu": 21
+    "url_vzor": "/rpd/([a-z0-9-]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Jobs.cz - solution architect",
     "url": "https://www.jobs.cz/prace/?q%5B%5D=solution+architect",
-    "odkazu": 30
+    "url_vzor": "/rpd/([a-z0-9-]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Remotive",
     "url": "https://remotive.com/remote-jobs/software-dev",
-    "odkazu": 9
+    "url_vzor": "remotive\\.com/remote-jobs/[^/]+/[^/]+-([0-9]+)"
   },
   {
+    "aktivni": true,
     "nazev": "We Work Remotely",
     "url": "https://weworkremotely.com/categories/remote-programming-jobs",
-    "odkazu": 16
+    "url_vzor": "weworkremotely\\.com/remote-jobs/([a-z0-9-]+-\\d+)"
   },
   {
+    "aktivni": true,
+    "nazev": "We Work Remotely",
+    "url": "https://weworkremotely.com/categories/all-other-remote-jobs",
+    "url_vzor": "weworkremotely\\.com/remote-jobs/([a-z0-9-]+-\\d+)"
+  },
+  {
+    "aktivni": true,
     "nazev": "HitPrace.cz - IT Brno",
-    "url": "https://www.hitprace.cz/it-brno",
-    "odkazu": 70
+    "url": "https://www.hitprace.cz/prace/?lokalita_textbox=Olomouc&form_geolocation_okruh=40",
+    "url_vzor": "/prace/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Vision - kariera",
     "url": "https://www.vision.cz/o-nas/kariera",
-    "odkazu": 4
+    "url_vzor": "/kariera/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Vera - kariera",
     "url": "https://www.vera.cz/kariera",
-    "odkazu": 2
+    "url_vzor": "/kariera/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "onsemi - careers",
     "url": "https://www.onsemi.com/careers",
-    "odkazu": 24
+    "url_vzor": "/careers/([^/?]+)"
+  },
+  {
+    "aktivni": true,
+    "nazev": "ITjobs.cz",
+    "url": "https://www.itjobs.cz/cz/",
+    "url_vzor": "/volna-mista-v-it/([a-z0-9-]+)"
   }
 ]

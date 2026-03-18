@@ -13,36 +13,6 @@
   },
   {
     "aktivni": true,
-    "nazev": "Miele jobs.cz",
-    "url": "https://miele.jobs.cz/volne-pozice-unico",
-    "url_vzor": "/rpd/([a-z0-9-]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Jobstack IT",
-    "url": "https://www.jobstack.it/it-jobs",
-    "url_vzor": "/it-jobs/(\\d+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "ITjobs.cz",
-    "url": "https://www.itjobs.cz/cz/",
-    "url_vzor": "/nabidka/(\\d+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Práce.cz - IT",
-    "url": "https://www.prace.cz/prace/it-telekomunikace/",
-    "url_vzor": "/pracovni-inzeraty/([^/?]+)/"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Indeed CZ - solution architect",
-    "url": "https://cz.indeed.com/jobs?q=solution+architect&l=Czech+Republic",
-    "url_vzor": "/rc/clk\\?jk=([a-z0-9]+)"
-  },
-  {
-    "aktivni": true,
     "nazev": "Remotive",
     "url": "https://remotive.com/remote-jobs/software-dev",
     "url_vzor": "remotive\\.com/remote-jobs/[^/]+/[^/]+-([0-9]+)"
@@ -52,6 +22,80 @@
     "nazev": "We Work Remotely",
     "url": "https://weworkremotely.com/categories/remote-programming-jobs",
     "url_vzor": "weworkremotely\\.com/remote-jobs/([a-z0-9-]+-\\d+)"
+  },
+  {
+    "aktivni": true,
+    "nazev": "We Work Remotely",
+    "url": "https://weworkremotely.com/categories/all-other-remote-jobs",
+    "url_vzor": "weworkremotely\\.com/remote-jobs/([a-z0-9-]+-\\d+)"
+  },
+  {
+    "aktivni": true,
+    "nazev": "HitPrace.cz - IT Brno",
+    "url": "https://www.hitprace.cz/prace/?lokalita_textbox=Olomouc&form_geolocation_okruh=40",
+    "url_vzor": "/prace/([^/?]+)"
+  },
+  {
+    "aktivni": true,
+    "nazev": "Vision - kariera",
+    "url": "https://www.vision.cz/o-nas/kariera",
+    "url_vzor": "/kariera/([^/?]+)"
+  },
+  {
+    "aktivni": true,
+    "nazev": "Vera - kariera",
+    "url": "https://www.vera.cz/kariera",
+    "url_vzor": "/kariera/([^/?]+)"
+  },
+  {
+    "aktivni": true,
+    "nazev": "onsemi - careers",
+    "url": "https://www.onsemi.com/careers",
+    "url_vzor": "/careers/([^/?]+)"
+  },
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+  {
+    "aktivni": true,
+    "nazev": "Miele jobs.cz",
+    "url": "https://miele.jobs.cz/volne-pozice-unicov",
+    "url_vzor": "/rpd/([a-z0-9-]+)"
+  },
+  {
+    "aktivni": true,
+    "nazev": "Jobstack IT",
+    "url": "https://www.jobstack.it/it-jobs",
+    "url_vzor": "/it-job/[^/]+/([a-f0-9]+)"
+  },
+  {
+    "aktivni": true,
+    "nazev": "ITjobs.cz",
+    "url": "https://www.itjobs.cz/cz/",
+    "url_vzor": "/volna-mista-v-it/([a-z0-9-]+)"
+  },
+  {
+    "aktivni": true,
+    "nazev": "Práce.cz - IT",
+    "url": "https://beta.prace.cz/hledat/?workAreaIds%5B%5D=200900011%3B200900012%3B200900013&jobTypes%5B%5D=FULL_TIME&jobTypes%5B%5D=PART_TIME&education%5B%5D=HIGHER_EDUCATION&salaryMin=50000&salaryCurrency=CZKce/",
+    "url_vzor": "/nabidka/volna-mista-v-it/([a-z0-9-]+)/"
+  },
+  {
+    "aktivni": true,
+    "nazev": "Indeed CZ - solution architect",
+    "url": "https://cz.indeed.com/jobs?q=solution+architect&l=Czech+Republic",
+    "url_vzor": "/rc/clk\\?jk=([a-z0-9]+)"
   },
   {
     "aktivni": true,
@@ -103,12 +147,6 @@
   },
   {
     "aktivni": true,
-    "nazev": "HitPrace.cz - IT Brno",
-    "url": "https://www.hitprace.cz/it-brno",
-    "url_vzor": "/prace/([^/?]+)"
-  },
-  {
-    "aktivni": true,
     "nazev": "Integra - kariera remote",
     "url": "https://www.integra.cz/cs/kariera/?location=13&location=8",
     "url_vzor": "/kariera/([^/?]+)"
@@ -117,18 +155,6 @@
     "aktivni": true,
     "nazev": "MONET+ - kariera",
     "url": "https://www.monetplus.cz/kariera",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Vision - kariera",
-    "url": "https://www.vision.cz/o-nas/kariera",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Vera - kariera",
-    "url": "https://www.vera.cz/kariera",
     "url_vzor": "/kariera/([^/?]+)"
   },
   {
@@ -153,7 +179,8 @@
     "aktivni": true,
     "nazev": "ARICOMA - kariera",
     "url": "https://aricoma.jobs.cz/",
-    "url_vzor": "/rpd/([a-z0-9-]+)"  },
+    "url_vzor": "/rpd/([a-z0-9-]+)"
+  },
   {
     "aktivni": true,
     "nazev": "Marketsoul - kariera",
@@ -207,11 +234,5 @@
     "nazev": "CXtech",
     "url": "https://cxtech.cz/kariera",
     "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "onsemi - careers",
-    "url": "https://www.onsemi.com/careers",
-    "url_vzor": "/careers/([^/?]+)"
   }
 ]

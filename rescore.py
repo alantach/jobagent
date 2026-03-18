@@ -12,7 +12,7 @@ BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR   = os.path.join(BASE_DIR, "data")
 RULES_FILE = os.path.join(DATA_DIR, "pravidla.json")
 OUT_FILE   = os.path.join(DATA_DIR, "vysledky.json")
-MIN_SKORE  = 5
+MIN_SKORE  = 20
 
 
 def main():
@@ -25,8 +25,6 @@ def main():
     print(f"Pravidel: {len(rules)}, zaznamu: {len(vysledky)}\n")
 
     zmeneno = 0
-    odfilterovano = 0
-    nove_vysledky = []
 
     for z in vysledky:
         stare_skore = z.get("prescoring", 0)
@@ -34,25 +32,18 @@ def main():
         z["prescoring"]     = nove_skore
         z["match_pravidla"] = matched
 
-        if nove_skore < MIN_SKORE:
-            print(f"  - [{stare_skore} -> {nove_skore}] {z['nazev_pozice'][:60]} (odfilterovano)")
-            odfilterovano += 1
-            continue
-
         if nove_skore != stare_skore:
             print(f"  ~ [{stare_skore} -> {nove_skore}] {z['nazev_pozice'][:60]}")
             zmeneno += 1
 
-        nove_vysledky.append(z)
-
-    nove_vysledky.sort(key=lambda x: x["prescoring"], reverse=True)
+    # Serad ale NESMAZ - zachovej vsechny zaznamy
+    vysledky.sort(key=lambda x: x["prescoring"], reverse=True)
 
     with open(OUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(nove_vysledky, f, ensure_ascii=False, indent=2)
+        json.dump(vysledky, f, ensure_ascii=False, indent=2)
 
     print(f"\nZmeneno skore: {zmeneno}")
-    print(f"Odfilterovano (pod {MIN_SKORE}): {odfilterovano}")
-    print(f"Zbyvajicich zaznamu: {len(nove_vysledky)}")
+    print(f"Celkem zaznamu zachovano: {len(vysledky)}")
     print(f"=== Hotovo ===\n")
 
 if __name__ == "__main__":

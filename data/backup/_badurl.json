@@ -1,142 +1,164 @@
 [
   {
+    "aktivni": true,
     "nazev": "Miele jobs.cz",
-    "url": "https://miele.jobs.cz/volne-pozice-unico",
-    "duvod": "chyba stazeni"
+    "url": "https://miele.jobs.cz/volne-pozice-unicov",
+    "url_vzor": "/rpd/([a-z0-9-]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Jobstack IT",
     "url": "https://www.jobstack.it/it-jobs",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/it-jobs/(\\d+)"
   },
   {
-    "nazev": "ITjobs.cz",
-    "url": "https://www.itjobs.cz/cz/",
-    "duvod": "zadne odkazy"
-  },
-  {
+    "aktivni": true,
     "nazev": "Práce.cz - IT",
     "url": "https://www.prace.cz/prace/it-telekomunikace/",
-    "duvod": "chyba stazeni"
+    "url_vzor": "/pracovni-inzeraty/([^/?]+)/"
   },
   {
+    "aktivni": true,
     "nazev": "Indeed CZ - solution architect",
     "url": "https://cz.indeed.com/jobs?q=solution+architect&l=Czech+Republic",
-    "duvod": "chyba stazeni"
+    "url_vzor": "/rc/clk\\?jk=([a-z0-9]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Webtrh.cz",
     "url": "https://webtrh.cz/nabidky-prace/",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/nabidky-prace/(\\d+)"
   },
   {
+    "aktivni": true,
     "nazev": "Tribee.cz",
     "url": "https://www.tribee.cz/cs/prace",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/prace/(\\d+)"
   },
   {
+    "aktivni": true,
     "nazev": "Tribee - Heidelberg",
     "url": "https://www.tribee.cz/cs/spolecnost/heidelbergdhb/prace",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/prace/(\\d+)"
   },
   {
+    "aktivni": true,
     "nazev": "Smitio.com",
     "url": "https://smitio.com/cs/katalog-nabidek?langs=[cs,en]",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/nabidky/([a-z0-9-]+-\\d+)"
   },
   {
+    "aktivni": true,
     "nazev": "Quadient - Czech Republic",
     "url": "https://careers.quadient.com/go/Czech-Republic/3590101/",
-    "duvod": "chyba stazeni"
+    "url_vzor": "/job/(\\d+)"
   },
   {
+    "aktivni": true,
     "nazev": "NXP Careers",
     "url": "https://nxp.wd3.myworkdayjobs.com/careers",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/job/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Seyfor - kariera Olomouc",
     "url": "https://career.seyfor.com/cs-cz/volne-pozice?CareerFilter%5Blocation%5D=16",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/volne-pozice/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Seyfor - kariera Brno",
     "url": "https://career.seyfor.com/cs-cz/volne-pozice?CareerFilter%5Blocation%5D=1",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/volne-pozice/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Integra - kariera remote",
     "url": "https://www.integra.cz/cs/kariera/?location=13&location=8",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/kariera/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "MONET+ - kariera",
     "url": "https://www.monetplus.cz/kariera",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/kariera/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Pixelmate - kariera",
     "url": "https://pixelmate.cz/kariera",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/kariera/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "CDC - kariera",
     "url": "https://www.cdc.cz/cs/kariera/",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/kariera/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Giacom - Brno",
     "url": "https://www.giacom.com/careers",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/careers/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "ARICOMA - kariera",
     "url": "https://aricoma.jobs.cz/",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/rpd/([a-z0-9-]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Marketsoul - kariera",
     "url": "https://www.marketsoul.cz/kariera/",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/kariera/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Notino - kariera",
     "url": "https://www.notino.cz/kariera/",
-    "duvod": "chyba stazeni"
+    "url_vzor": "/kariera/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Anafra - kariera",
     "url": "https://www.anafra.cz/kariera",
-    "duvod": "chyba stazeni"
+    "url_vzor": "/kariera/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "TescoSW - volne pozice",
     "url": "https://www.tescosw.cz/volne-pozice/",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/volne-pozice/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "OLC - volna mista",
     "url": "https://www.olc.cz/o-nas/nabidka-volnych-mist/",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/nabidka-volnych-mist/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "Blogic - career",
     "url": "https://www.blogic.cz/career",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/career/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "One3D - kariera",
     "url": "https://www.one3d.cz/kariera/",
-    "duvod": "zadne odkazy"
+    "url_vzor": "/kariera/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "ELEKTROSYSTEM - kariera",
     "url": "https://www.elektrosystem.cz/kariera",
-    "duvod": "chyba stazeni"
+    "url_vzor": "/kariera/([^/?]+)"
   },
   {
+    "aktivni": true,
     "nazev": "CXtech",
     "url": "https://cxtech.cz/kariera",
-    "duvod": "chyba stazeni"
+    "url_vzor": "/kariera/([^/?]+)"
   }
 ]

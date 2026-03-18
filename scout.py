@@ -20,7 +20,7 @@ RULES_FILE = os.path.join(DATA_DIR, "pravidla.json")
 OUT_FILE   = os.path.join(DATA_DIR, "vysledky.json")
 STAZENE    = os.path.join(DATA_DIR, "stazene.json")
 BACKUP_DIR = os.path.join(DATA_DIR, "backup")
-MIN_SKORE  = 2
+MIN_SKORE  = 10
 
 HEADERS = {
     "User-Agent":      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
@@ -105,7 +105,7 @@ def uloz_html(html, inzerat, odkaz):
         f'<div style="position:fixed;top:0;left:0;right:0;background:#0f3460;'
         f'color:#00D4AA;padding:8px 16px;font-family:sans-serif;font-size:13px;z-index:9999">'
         f'<b>{inzerat["nazev_pozice"]}</b> &nbsp;|&nbsp; '
-        f'Skore: <b>{inzerat["prescoring"]}/10</b> &nbsp;|&nbsp; '
+        f'Skore: <b>{inzerat["prescoring"]}/100</b> &nbsp;|&nbsp; '
         f'{inzerat["match_pravidla"]} &nbsp;|&nbsp; '
         f'<a href="{odkaz}" style="color:#fff" target="_blank">Otevrit original</a>'
         f'</div><div style="margin-top:44px">'
@@ -146,16 +146,16 @@ def main():
         html_vypis = fetch(zdroj["url"])
         if not html_vypis:
             print("  PRESKOCENO\n")
-            bad_urls.append({"nazev": zdroj["nazev"], "url": zdroj["url"], "duvod": "chyba stazeni"})
+            bad_urls.append(dict(zdroj))
             continue
 
         odkazy = extrahuj_odkazy(html_vypis, zdroj["url"], zdroj.get("url_vzor", ""))
         print(f"  Nalezeno odkazu: {len(odkazy)}")
 
         if odkazy:
-            good_urls.append({"nazev": zdroj["nazev"], "url": zdroj["url"], "odkazu": len(odkazy)})
+            good_urls.append(dict(zdroj))
         else:
-            bad_urls.append({"nazev": zdroj["nazev"], "url": zdroj["url"], "duvod": "zadne odkazy"})
+            bad_urls.append(dict(zdroj))
 
         for link in odkazy:
             odkaz      = link["url"]
@@ -209,7 +209,7 @@ def main():
             })
             nove += 1
 
-            print(f"  + [{skore}/10] {inzerat['nazev_pozice'][:60]} @ {inzerat['firma'][:30]}")
+            print(f"  + [{skore}/100] {inzerat['nazev_pozice'][:60]} @ {inzerat['firma'][:30]}")
             if matched:
                 print(f"         {matched}")
 
