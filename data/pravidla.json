@@ -12,6 +12,12 @@
   {"kategorie": "LOKALITA",   "pravidlo": "Šumperk",               "vaha": 20},
   {"kategorie": "LOKALITA",   "pravidlo": "Praha",                 "vaha": -5},
 
+
+{"kategorie": "FIRMA",   "pravidlo": "Stratox",                 "vaha": 30},
+{"kategorie": "FIRMA",   "pravidlo": "max",                 "vaha": 15},
+{"kategorie": "FIRMA",   "pravidlo": "Aricoma",                 "vaha": 10}, 
+
+
   {"kategorie": "POZICE",      "pravidlo": "administrátor", "vaha": -5},
   {"kategorie": "POZICE",      "pravidlo": "Developer", "vaha": -10},
   {"kategorie": "POZICE",      "pravidlo": "tech lead", "vaha": -10},

@@ -1,238 +1,230 @@
 [
-  {
-    "aktivni": false,
-    "nazev": "Jobs.cz - IT analytik",
-    "url": "https://www.jobs.cz/prace/it-analytik/?arrangement=work-mostly-from-home",
-    "url_vzor": "/rpd/([a-z0-9-]+)"
-  },
-  {
-    "aktivni": false,
-    "nazev": "Jobs.cz - solution architect",
-    "url": "https://www.jobs.cz/prace/?q%5B%5D=solution+architect",
-    "url_vzor": "/rpd/([a-z0-9-]+)"
-  },
-  {
-    "aktivni": false,
-    "nazev": "Remotive",
-    "url": "https://remotive.com/remote-jobs/software-dev",
-    "url_vzor": "remotive\\.com/remote-jobs/[^/]+/[^/]+-([0-9]+)"
-  },
-  {
-    "aktivni": false,
-    "nazev": "We Work Remotely",
-    "url": "https://weworkremotely.com/categories/remote-programming-jobs",
-    "url_vzor": "weworkremotely\\.com/remote-jobs/([a-z0-9-]+-\\d+)"
-  },
-  {
-    "aktivni": false,
-    "nazev": "We Work Remotely",
-    "url": "https://weworkremotely.com/categories/all-other-remote-jobs",
-    "url_vzor": "weworkremotely\\.com/remote-jobs/([a-z0-9-]+-\\d+)"
-  },
-  {
-    "aktivni": false,
-    "nazev": "HitPrace.cz - IT Brno",
-    "url": "https://www.hitprace.cz/prace/?lokalita_textbox=Olomouc&form_geolocation_okruh=40",
-    "url_vzor": "/prace/([^/?]+)"
-  },
-  {
-    "aktivni": false,
-    "nazev": "Vision - kariera",
-    "url": "https://www.vision.cz/o-nas/kariera",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": false,
-    "nazev": "Vera - kariera",
-    "url": "https://www.vera.cz/kariera",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": false,
-    "nazev": "onsemi - careers",
-    "url": "https://www.onsemi.com/careers",
-    "url_vzor": "/careers/([^/?]+)"
-  },
-  
-  
-  
-  
-  
-  
-  
-
-
-
-
-
-
-
-  {
-    "aktivni": true,
-    "nazev": "Miele jobs.cz",
-    "url": "https://miele.jobs.cz/volne-pozice-unicov",
-    "url_vzor": "/rpd/([a-z0-9-]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Jobstack IT",
-    "url": "https://www.jobstack.it/it-jobs",
-    "url_vzor": "/it-job/[^/]+/([a-f0-9]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "ITjobs.cz",
-    "url": "https://www.itjobs.cz/cz/",
-    "url_vzor": "/volna-mista-v-it/([a-z0-9-]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Práce.cz - IT",
-    "url": "https://beta.prace.cz/hledat/?workAreaIds%5B%5D=200900011%3B200900012%3B200900013&jobTypes%5B%5D=FULL_TIME&jobTypes%5B%5D=PART_TIME&education%5B%5D=HIGHER_EDUCATION&salaryMin=50000&salaryCurrency=CZKce/",
-    "url_vzor": "/nabidka/([a-z0-9-]+)/"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Indeed CZ - solution architect",
-    "url": "https://cz.indeed.com/jobs?q=solution+architect&l=Czech+Republic",
-    "url_vzor": "/rc/clk\\?jk=([a-z0-9]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Webtrh.cz",
-    "url": "https://webtrh.cz/nabidky-prace/",
-    "url_vzor": "/nabidky-prace/(\\d+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Tribee.cz",
-    "url": "https://www.tribee.cz/cs/prace",
-    "url_vzor": "/prace/(\\d+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Tribee - Heidelberg",
-    "url": "https://www.tribee.cz/cs/spolecnost/heidelbergdhb/prace",
-    "url_vzor": "/prace/(\\d+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Smitio.com",
-    "url": "https://smitio.com/cs/katalog-nabidek?langs=[cs,en]",
-    "url_vzor": "/nabidky/([a-z0-9-]+-\\d+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Quadient - Czech Republic",
-    "url": "https://careers.quadient.com/go/Czech-Republic/3590101/",
-    "url_vzor": "/job/(\\d+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "NXP Careers",
-    "url": "https://nxp.wd3.myworkdayjobs.com/careers",
-    "url_vzor": "/job/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Seyfor - kariera Olomouc",
-    "url": "https://career.seyfor.com/cs-cz/volne-pozice?CareerFilter%5Blocation%5D=16",
-    "url_vzor": "/volne-pozice/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Seyfor - kariera Brno",
-    "url": "https://career.seyfor.com/cs-cz/volne-pozice?CareerFilter%5Blocation%5D=1",
-    "url_vzor": "/volne-pozice/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Integra - kariera remote",
-    "url": "https://www.integra.cz/cs/kariera/?location=13&location=8",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "MONET+ - kariera",
-    "url": "https://www.monetplus.cz/kariera",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Pixelmate - kariera",
-    "url": "https://pixelmate.cz/kariera",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "CDC - kariera",
-    "url": "https://www.cdc.cz/cs/kariera/",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Giacom - Brno",
-    "url": "https://www.giacom.com/careers",
-    "url_vzor": "/careers/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "ARICOMA - kariera",
-    "url": "https://aricoma.jobs.cz/",
-    "url_vzor": "/rpd/([a-z0-9-]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Marketsoul - kariera",
-    "url": "https://www.marketsoul.cz/kariera/",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Notino - kariera",
-    "url": "https://www.notino.cz/kariera/",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Anafra - kariera",
-    "url": "https://www.anafra.cz/kariera",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "TescoSW - volne pozice",
-    "url": "https://www.tescosw.cz/volne-pozice/",
-    "url_vzor": "/volne-pozice/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "OLC - volna mista",
-    "url": "https://www.olc.cz/o-nas/nabidka-volnych-mist/",
-    "url_vzor": "/nabidka-volnych-mist/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Blogic - career",
-    "url": "https://www.blogic.cz/career",
-    "url_vzor": "/career/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "One3D - kariera",
-    "url": "https://www.one3d.cz/kariera/",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "ELEKTROSYSTEM - kariera",
-    "url": "https://www.elektrosystem.cz/kariera",
-    "url_vzor": "/kariera/([^/?]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "CXtech",
-    "url": "https://cxtech.cz/kariera",
-    "url_vzor": "/kariera/([^/?]+)"
-  }
+    {
+       "aktivni": true,
+        "nazev": "Jobs.cz - IT analytik",
+        "url": "https://www.jobs.cz/prace/it-analytik/?date=3d&arrangement=work-mostly-from-home",
+        "url_vzor": "/rpd/([a-z0-9-]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Jobs.cz - solution architect",
+        "url": "https://www.jobs.cz/prace/?q%5B%5D=solution%20architect&date=3d",
+        "url_vzor": "/rpd/([a-z0-9-]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "jobs it olomouc",
+        "url": "https://www.jobs.cz/prace/olomoucky-kraj/?field%5B%5D=200900011&field%5B%5D=200900013",
+        "url_vzor": "/rpd/([a-z0-9-]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "jobs it from home",
+        "url": "https://www.jobs.cz/prace/?field%5B%5D=200900011&field%5B%5D=200900013&date=3d&arrangement=work-mostly-from-home",
+        "url_vzor": "/rpd/([a-z0-9-]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Remotive",
+        "url": "https://remotive.com/remote-jobs/software-dev",
+        "url_vzor": "remotive\\.com/remote-jobs/[^/]+/[^/]+-([0-9]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "We Work Remotely",
+        "url": "https://weworkremotely.com/categories/remote-programming-jobs",
+        "url_vzor": "weworkremotely\\.com/remote-jobs/([a-z0-9-]+-\\d+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "We Work Remotely",
+        "url": "https://weworkremotely.com/categories/all-other-remote-jobs",
+        "url_vzor": "weworkremotely\\.com/remote-jobs/([a-z0-9-]+-\\d+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Vision - kariera",
+        "url": "https://www.vision.cz/o-nas/kariera",
+        "url_vzor": "/kariera/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Vera - kariera",
+        "url": "https://www.vera.cz/kariera",
+        "url_vzor": "/kariera/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "onsemi - careers",
+        "url": "https://www.onsemi.com/careers",
+        "url_vzor": "/careers/([^/?]+)"
+    },
+    {
+        "aktivni": true,
+        "nazev": "cooljobs",
+        "url": "https://www.cooljobs.eu/cz",
+        "url_vzor": "cz/[^/]+/(\\d+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Jobstack IT",
+        "url": "https://www.jobstack.it/it-jobs",
+        "url_vzor": "/it-job/[^/]+/([a-f0-9]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "ITjobs.cz",
+        "url": "https://www.itjobs.cz/cz/",
+        "url_vzor": "/volna-mista-v-it/([a-z0-9-]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Práce.cz - IT",
+        "url": "https://beta.prace.cz/hledat/?workAreaIds%5B%5D=200900011%3B200900012%3B200900013&jobTypes%5B%5D=FULL_TIME&jobTypes%5B%5D=PART_TIME&education%5B%5D=HIGHER_EDUCATION&salaryMin=50000&salaryCurrency=CZKce/",
+        "url_vzor": "/nabidka/([a-z0-9-]+)/"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Indeed CZ - solution architect",
+        "url": "https://cz.indeed.com/jobs?q=solution+architect&l=Czech+Republic",
+        "url_vzor": "/rc/clk\\?jk=([a-z0-9]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Webtrh.cz",
+        "url": "https://webtrh.cz/nabidky-prace/",
+        "url_vzor": "/nabidky-prace/(\\d+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Tribee.cz",
+        "url": "https://www.tribee.cz/cs/prace",
+        "url_vzor": "/prace/(\\d+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Tribee - Heidelberg",
+        "url": "https://www.tribee.cz/cs/spolecnost/heidelbergdhb/prace",
+        "url_vzor": "/prace/(\\d+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Smitio.com",
+        "url": "https://smitio.com/cs/katalog-nabidek?langs=[cs,en]",
+        "url_vzor": "/nabidky/([a-z0-9-]+-\\d+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Quadient - Czech Republic",
+        "url": "https://careers.quadient.com/go/Czech-Republic/3590101/",
+        "url_vzor": "/job/(\\d+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "NXP Careers",
+        "url": "https://nxp.wd3.myworkdayjobs.com/careers",
+        "url_vzor": "/job/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Seyfor - kariera Olomouc",
+        "url": "https://career.seyfor.com/cs-cz/volne-pozice?CareerFilter%5Blocation%5D=16",
+        "url_vzor": "/volne-pozice/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Seyfor - kariera Brno",
+        "url": "https://career.seyfor.com/cs-cz/volne-pozice?CareerFilter%5Blocation%5D=1",
+        "url_vzor": "/volne-pozice/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Integra - kariera remote",
+        "url": "https://www.integra.cz/cs/kariera/?location=13&location=8",
+        "url_vzor": "/kariera/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "MONET+ - kariera",
+        "url": "https://www.monetplus.cz/kariera",
+        "url_vzor": "/kariera/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Pixelmate - kariera",
+        "url": "https://pixelmate.cz/kariera",
+        "url_vzor": "/kariera/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "CDC - kariera",
+        "url": "https://www.cdc.cz/cs/kariera/",
+        "url_vzor": "/kariera/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Giacom - Brno",
+        "url": "https://www.giacom.com/careers",
+        "url_vzor": "/careers/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "ARICOMA - kariera",
+        "url": "https://aricoma.jobs.cz/",
+        "url_vzor": "/rpd/([a-z0-9-]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Marketsoul - kariera",
+        "url": "https://www.marketsoul.cz/kariera/",
+        "url_vzor": "/kariera/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Notino - kariera",
+        "url": "https://www.notino.cz/kariera/",
+        "url_vzor": "/kariera/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Anafra - kariera",
+        "url": "https://www.anafra.cz/kariera",
+        "url_vzor": "/kariera/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "TescoSW - volne pozice",
+        "url": "https://www.tescosw.cz/volne-pozice/",
+        "url_vzor": "/volne-pozice/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "OLC - volna mista",
+        "url": "https://www.olc.cz/o-nas/nabidka-volnych-mist/",
+        "url_vzor": "/nabidka-volnych-mist/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "Blogic - career",
+        "url": "https://www.blogic.cz/career",
+        "url_vzor": "/career/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "One3D - kariera",
+        "url": "https://www.one3d.cz/kariera/",
+        "url_vzor": "/kariera/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "ELEKTROSYSTEM - kariera",
+        "url": "https://www.elektrosystem.cz/kariera",
+        "url_vzor": "/kariera/([^/?]+)"
+    },
+    {
+       "aktivni": true,
+        "nazev": "CXtech",
+        "url": "https://cxtech.cz/kariera",
+        "url_vzor": "/kariera/([^/?]+)"
+    }
 ]

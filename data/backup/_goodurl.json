@@ -1,20 +1,8 @@
 [
   {
     "aktivni": true,
-    "nazev": "Jobstack IT",
-    "url": "https://www.jobstack.it/it-jobs",
-    "url_vzor": "/it-job/[^/]+/([a-f0-9]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "ITjobs.cz",
-    "url": "https://www.itjobs.cz/cz/",
-    "url_vzor": "/volna-mista-v-it/([a-z0-9-]+)"
-  },
-  {
-    "aktivni": true,
-    "nazev": "Práce.cz - IT",
-    "url": "https://beta.prace.cz/hledat/?workAreaIds%5B%5D=200900011%3B200900012%3B200900013&jobTypes%5B%5D=FULL_TIME&jobTypes%5B%5D=PART_TIME&education%5B%5D=HIGHER_EDUCATION&salaryMin=50000&salaryCurrency=CZKce/",
-    "url_vzor": "/nabidka/([a-z0-9-]+)/"
+    "nazev": "cooljobs",
+    "url": "https://www.cooljobs.eu/cz",
+    "url_vzor": "cz/[^/]+/(\\d+)"
   }
 ]
